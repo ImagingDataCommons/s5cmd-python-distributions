@@ -156,3 +156,6 @@ Thumbs.db
 # Common editor files
 *~
 *.swp
+
+# s5cmd-python-distributions
+src/s5cmd/s5cmd*

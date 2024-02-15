@@ -79,11 +79,6 @@ repos:
         entry: PyBind|Numpy|Cmake|CCache|Github|PyTest
         exclude: .pre-commit-config.yaml
 
-  - repo: https://github.com/cheshirekow/cmake-format-precommit
-    rev: "v0.6.13"
-    hooks:
-      - id: cmake-format
-
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: "v0.16"
     hooks:

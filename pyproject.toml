@@ -56,6 +56,10 @@ Discussions = "https://github.com/jcfr/s5cmd-python-distributions/discussions"
 Changelog = "https://github.com/jcfr/s5cmd-python-distributions/releases"
 
 
+[project.scripts]
+s5cmd = "s5cmd:s5cmd"
+
+
 [tool.scikit-build]
 minimum-version = "0.4"
 build-dir = "build/{wheel_tag}"
@@ -153,7 +157,7 @@ isort.required-imports = ["from __future__ import annotations"]
 [tool.pylint]
 py-version = "3.8"
 ignore-paths = [".*/_version.py"]
-extension-pkg-allow-list = ["s5cmd._core"]
+extension-pkg-allow-list = []
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
 messages_control.disable = [
