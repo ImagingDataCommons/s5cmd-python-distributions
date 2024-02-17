@@ -89,6 +89,8 @@ jobs:
           fetch-depth: 0
 
       - uses: pypa/cibuildwheel@v2.16.5
+        env:
+          CIBW_BUILD: "cp312-*"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
