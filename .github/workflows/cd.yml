@@ -48,7 +48,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pytest pytest-cov
+          # Waiting pip supports `--only-deps=test`, explicitly extract the test dependencies
+          # See https://github.com/pypa/pip/issues/11440
+          pip install yq
+          tomlq -r '.project."optional-dependencies".test[]' pyproject.toml | xargs -d '\n' pip install
 
       - uses: actions/download-artifact@v4
         with:
