@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from importlib.metadata import distribution
 from pathlib import Path
 from typing import NoReturn
 
@@ -17,11 +18,19 @@ from ._version import version as __version__
 __all__ = ["__version__", "s5cmd"]
 
 
-S5CMD_BIN_DIR: Path = Path(__file__).parent
+def _lookup(name: str) -> Path:
+    executable_path = f"s5cmd/bin/{name}"
+    files = distribution("s5cmd").files
+    if files is not None:
+        for _file in files:
+            if str(_file).startswith(executable_path):
+                return Path(_file.locate()).resolve(strict=True)
+    msg = f"Failed to lookup '{executable_path}` directory."
+    raise FileNotFoundError(msg)
 
 
 def _program(name: str, args: list[str]) -> int:
-    return subprocess.call([S5CMD_BIN_DIR / name, *args], close_fds=False)
+    return subprocess.call([_lookup(name), *args], close_fds=False)
 
 
 def s5cmd() -> NoReturn:
