@@ -23,6 +23,8 @@ set(win32_sha256        "ee667eb01b955a7dda588456bd102982f8344bed393a8b63b5d4c9c
 set(win64_filename      "s5cmd_${version}_Windows-64bit.zip")
 set(win64_sha256        "f7c311907c78efa56e27a25fba1f87520754c402bbe1cb4901d3522f12a75497")
 
+set(winarm64_filename   "s5cmd_${version}_Windows-arm64.zip")
+set(winarm64_sha256     "61e0adf3635334fa62714a5cf221e03f3549392e9613f9a7591a03d8e6fe0d64")
 
 cmake_host_system_information(RESULT is_64bit QUERY IS_64BIT)
 
@@ -40,8 +42,11 @@ endif()
 
 if(WIN32)
   set(archive "win32")
-  if(is_64bit AND NOT (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "ARM64"))
+  if(is_64bit)
     set(archive "win64")
+    if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "ARM64" OR "$ENV{SETUPTOOLS_EXT_SUFFIX}" MATCHES arm64)
+      set(archive "winarm64")
+    endif()
   endif()
 endif()
 
