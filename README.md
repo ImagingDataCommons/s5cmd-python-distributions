@@ -31,7 +31,7 @@ The following platforms are supported by the binary wheels:
 
 | OS            | Arch                                                                                   |
 | ------------- | -------------------------------------------------------------------------------------- |
-| Windows       | 64-bit<br>32-bit                                                                       |
+| Windows       | 64-bit<br>32-bit<br>ARM64                                                              |
 | Linux Intel   | manylinux2010+ 64-bit<br>musllinux 64-bit<br>manylinux2010+ 32-bit<br>musllinux 32-bit |
 | Linux ARM     | manylinux2014+ AArch64<br>musllinux AArch64                                            |
 | Linux PowerPC | manylinux2014+ ppc64le<br>musllinux ppc64le                                            |
