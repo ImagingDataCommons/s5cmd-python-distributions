@@ -92,6 +92,8 @@ jobs:
             arch: "ARM64"
             test-skip: "*-win_arm64"
 
+          - os: macos-14
+            arch: "arm64"
     steps:
       - uses: actions/checkout@v4
         with:

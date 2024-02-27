@@ -75,6 +75,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - runs-on: macos-14
+            python-version: cp312
+            arch: "arm64"
+
           - runs-on: windows-latest
             python-version: cp312
             arch: "ARM64"
