@@ -78,16 +78,26 @@ jobs:
           - runs-on: macos-14
             python-version: cp312
             arch: "arm64"
+            use_qemu: false
 
           - runs-on: windows-latest
             python-version: cp312
             arch: "ARM64"
             test-skip: "*-win_arm64"
+            use_qemu: false
 
+          - runs-on: ubuntu-latest
+            python-version: cp312
+            arch: "aarch64"
+            use_qemu: true
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3.0.0
+        if: matrix.use_qemu
 
       - uses: pypa/cibuildwheel@v2.16.5
         env:
