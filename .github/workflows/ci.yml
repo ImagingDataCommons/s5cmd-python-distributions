@@ -64,3 +64,29 @@ jobs:
         run: >-
           python -m pytest -ra --cov --cov-report=xml --cov-report=term
           --durations=20
+
+  checks-cibw:
+    name: >
+      Check Python ${{ matrix.python-version }} on ${{ matrix.runs-on }} (${{
+      matrix.arch }})
+    runs-on: ${{ matrix.runs-on }}
+    needs: [pre-commit]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runs-on: windows-latest
+            python-version: cp312
+            arch: "ARM64"
+            test-skip: "*-win_arm64"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pypa/cibuildwheel@v2.16.5
+        env:
+          CIBW_BUILD: "${{ matrix.python-version }}-*"
+          CIBW_ARCHS: "${{ matrix.arch }}"
+          CIBW_TEST_SKIP: "${{ matrix.test-skip }}"
