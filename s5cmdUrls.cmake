@@ -11,6 +11,9 @@ set(linux64_sha256      "a15f83d2a6dc091e43b2a120f29f8f6c86d146c381766c0197ec75d
 set(linuxarm64_filename "s5cmd_${version}_Linux-arm64.tar.gz")
 set(linuxarm64_sha256   "eabf18082398c332d33c692d383a889be204b1e7716f820e014bf11474ad345b")
 
+set(linuxppc64le_filename "s5cmd_${version}_Linux-ppc64le.tar.gz")
+set(linuxppc64le_sha256   "90e5f0b774745a93795a04add18f63b5f96e61bcd5d36d7dc26cfec38412cd23")
+
 set(macos64_filename    "s5cmd_${version}_macOS-64bit.tar.gz")
 set(macos64_sha256      "5503a3308e239f081e5238e0af57958ae618e0de8b9c71142fe80f38be77e1c7")
 
@@ -33,6 +36,8 @@ if(is_64bit)
   set(archive "linux64")
   if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "aarch64")
     set(archive "linuxarm64")
+  elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "ppc64le")
+    set(archive "linuxppc64le")
   endif()
 endif()
 

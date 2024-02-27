@@ -99,6 +99,10 @@ jobs:
           - os: ubuntu-latest
             arch: "aarch64"
             use_qemu: true
+
+          - os: ubuntu-latest
+            arch: "ppc64le"
+            use_qemu: true
     steps:
       - uses: actions/checkout@v4
         with:

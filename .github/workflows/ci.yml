@@ -90,6 +90,11 @@ jobs:
             python-version: cp312
             arch: "aarch64"
             use_qemu: true
+
+          - runs-on: ubuntu-latest
+            python-version: cp312
+            arch: "ppc64le"
+            use_qemu: true
     steps:
       - uses: actions/checkout@v4
         with:
