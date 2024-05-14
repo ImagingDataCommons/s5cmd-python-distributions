@@ -43,7 +43,7 @@ endif()
 
 if(APPLE)
   set(archive "macos64")
-  if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "ARM64")
+  if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "arm64")
     set(archive "macosarm64")
   endif()
 endif()
