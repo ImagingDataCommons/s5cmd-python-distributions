@@ -1,4 +1,5 @@
 #!usr/bin/env python3
+from __future__ import annotations
 
 import argparse
 import re
@@ -40,8 +41,7 @@ def parse_args() -> argparse.Namespace:
         help="Path to the s5cmd file",
         default=Path(__file__).parents[1].joinpath("s5cmdUrls.cmake").as_posix(),
     )
-    args = parser.parse_args()
-    return args
+    return parser.parse_args()
 
 
 def read_checksum_text(path: str) -> str:
@@ -51,12 +51,13 @@ def read_checksum_text(path: str) -> str:
 
     _path = Path(path)
     if not _path.exists() or not _path.is_file():
-        raise FileNotFoundError(f"Checksum file `{_path}` does not exist.")
+        msg = f"Checksum file `{_path}` does not exist."
+        raise FileNotFoundError(msg)
     return _path.read_text(encoding="utf-8")
 
 
 def generate_cmake_text(text: str) -> str:
-    checksums = [l.split() for l in text.rstrip("\n").split("\n")]
+    checksums = [line.split() for line in text.rstrip("\n").split("\n")]
 
     version = re.search(VERSION_RE, checksums[0][1]).group(1)
     if version is None:
@@ -111,7 +112,7 @@ def overwrite_cmake_file(text: str, path: str) -> None:
     replaced_text = re.sub(TEXT_RE, text, cmake_text)
     _path.write_text(replaced_text, encoding="utf-8")
 
-    print(f"Updated `{_path}` with new checksums.")
+    print(f"Checksum file `{_path}` updated.")  # noqa: T201
 
 
 def main():
