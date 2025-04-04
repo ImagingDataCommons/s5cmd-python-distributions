@@ -47,7 +47,7 @@ def _get_scripts():
 
 @all_tools
 def test_package_script(tool):
-    expected_version = "2.2.2"
+    expected_version = "2.3.0"
     scripts = [script for script in _get_scripts() if script.stem == tool]
     assert len(scripts) == 1
     output = subprocess.check_output([str(scripts[0]), "version"]).decode("ascii")
