@@ -57,14 +57,16 @@ regarding `s5cmd`, please visit https://github.com/peak/s5cmd.
 
 ## Acknowledgments
 
-This software is supported by the Imaging Data Commons (IDC) project, which has been funded in whole or
-in part with Federal funds from the NCI, NIH, under task order no. HHSN26110071
-under contract no. HHSN261201500003l.
+This software is supported by the Imaging Data Commons (IDC) project, which has
+been funded in whole or in part with Federal funds from the NCI, NIH, under task
+order no. HHSN26110071 under contract no. HHSN261201500003l.
 
-NCI Imaging Data Commons (IDC) (https://imaging.datacommons.cancer.gov/) is a cloud-based environment 
-containing publicly available cancer imaging data co-located with analysis and exploration tools and resources. 
-IDC is a node within the broader NCI Cancer Research Data Commons (CRDC) infrastructure that provides secure 
-access to a large, comprehensive, and expanding collection of cancer research data.
+NCI Imaging Data Commons (IDC) (https://imaging.datacommons.cancer.gov/) is a
+cloud-based environment containing publicly available cancer imaging data
+co-located with analysis and exploration tools and resources. IDC is a node
+within the broader NCI Cancer Research Data Commons (CRDC) infrastructure that
+provides secure access to a large, comprehensive, and expanding collection of
+cancer research data.
 
 Learn more about IDC from this publication:
 
