@@ -114,7 +114,7 @@ jobs:
         uses: docker/setup-qemu-action@v3.6.0
         if: matrix.use_qemu
 
-      - uses: pypa/cibuildwheel@v2.23.3
+      - uses: pypa/cibuildwheel@v3.0.0
         env:
           CIBW_BUILD: "cp312-*"
           CIBW_ARCHS: "${{ matrix.arch }}"
