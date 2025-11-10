@@ -1,16 +1,10 @@
 from __future__ import annotations
 
 import subprocess
-import sys
 import sysconfig
 from pathlib import Path
 
 import pytest
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import distribution
-else:
-    from importlib.metadata import distribution
 
 import s5cmd
 
@@ -33,16 +27,22 @@ def test_module(tool):
 
 
 def _get_scripts():
-    dist = distribution("s5cmd")
+    # Collect all "scripts" directories from sysconfig schemes
     scripts_paths = [
         Path(sysconfig.get_path("scripts", scheme)).resolve()
         for scheme in sysconfig.get_scheme_names()
     ]
     scripts = []
-    for file in dist.files:
-        if file.locate().parent.resolve(strict=True) in scripts_paths:
-            scripts.append(file.locate().resolve(strict=True))
-    return scripts
+    for scripts_dir in scripts_paths:
+        # Skip non-existent dirs to avoid Resolve errors
+        if not scripts_dir.exists():
+            continue
+        # Add regular files in the scripts dir (resolve to absolute Path)
+        for f in scripts_dir.iterdir():
+            if f.is_file():
+                scripts.append(f.resolve())
+    # remove duplicates while preserving order
+    return list(dict.fromkeys(scripts))
 
 
 @all_tools
