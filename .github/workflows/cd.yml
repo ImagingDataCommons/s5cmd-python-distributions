@@ -25,7 +25,7 @@ jobs:
       - name: Build SDist
         run: pipx run build --sdist
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: cibw-sdist
           path: dist/*.tar.gz
@@ -53,7 +53,7 @@ jobs:
           pip install yq
           tomlq -r '.project."optional-dependencies".test[]' pyproject.toml | xargs -d '\n' pip install
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: cibw-sdist
           path: dist
@@ -72,7 +72,7 @@ jobs:
     needs: [build_wheels, make_sdist, test_sdist]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           path: all
 
@@ -121,7 +121,7 @@ jobs:
           CIBW_TEST_SKIP: "${{ matrix.test-skip }}"
 
       - name: Upload wheels
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: wheelhouse/*.whl
@@ -135,7 +135,7 @@ jobs:
     if: github.event_name == 'release' && github.event.action == 'published'
 
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           pattern: cibw-*
           path: dist
