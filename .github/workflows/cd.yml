@@ -111,10 +111,10 @@ jobs:
           fetch-depth: 0
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4.2.0
+        uses: docker/setup-qemu-action@v4.3.0
         if: matrix.use_qemu
 
-      - uses: pypa/cibuildwheel@v4.2.0
+      - uses: pypa/cibuildwheel@v4.2.1
         env:
           CIBW_BUILD: "cp312-*"
           CIBW_ARCHS: "${{ matrix.arch }}"
