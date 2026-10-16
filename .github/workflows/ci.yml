@@ -75,7 +75,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - runs-on: macos-14
+          - runs-on: macos-15
             python-version: cp312
             arch: "arm64"
             use_qemu: false

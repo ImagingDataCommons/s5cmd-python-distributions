@@ -95,7 +95,7 @@ jobs:
             arch: "ARM64"
             test-skip: "*-win_arm64"
 
-          - os: macos-14
+          - os: macos-15
             arch: "arm64"
 
           - os: ubuntu-latest
